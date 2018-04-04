@@ -1,6 +1,8 @@
 " Don't try to be vi compatible
 set nocompatible
 
+set encoding=utf8
+
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
@@ -12,13 +14,45 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mhartington/oceanic-next'
+Plug 'eugen0329/vim-esearch'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-dotenv'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'tpope/vim-eunuch'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
+
+"closetag setting
+let g:closetag_filenames = '*.js,*.jsx'
+
+"YCM config
+" Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " jsx highlight plugin settings
 let g:jsx_ext_required = 0
@@ -50,7 +84,7 @@ nmap <Leader>t <Plug>(Prettier)
 let g:prettier#exec_cmd_async = 1
 " run prettier when onSave
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+autocmd BufWritePre *.js,*.json,*.ts,*.css,*.scss,*.less,*.graphql PrettierAsync
 " custome rule for prettier
 let g:prettier#config#semi = 'false'
 
@@ -60,11 +94,6 @@ let g:fzf_buffers_jump = 1
 
 " Security
 set modelines=0
-
-" Show line numbers
-" Show relative line numbers
-set number
-set relativenumber
 
 " No swapfile
 set noswapfile
@@ -129,6 +158,10 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
+" number
+set number relativenumber
+nnoremap <silent> <C-n> :set relativenumber! nu!<cr>
+
 " Textmate holdouts
 
 " Formatting
@@ -141,8 +174,11 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-set t_Co=256
-colo seoul256-light
-set background=light
+" for vim 8
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme OceanicNext
+set t_ut=
 
