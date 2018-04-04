@@ -6,12 +6,6 @@
 	editor = vim
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore
-[sendemail]
-	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = pavan.sss1991@gmail.com
-	smtppass = password
-	smtpserverport = 587
 [web]
 	browser = google-chrome
 [instaweb]
