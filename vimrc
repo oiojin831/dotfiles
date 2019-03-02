@@ -14,8 +14,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'junegunn/goyo.vim'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'jparise/vim-graphql'
 Plug 'prettier/vim-prettier', {
@@ -24,7 +24,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'scrooloose/nerdcommenter'
-Plug 'mhartington/oceanic-next'
+Plug 'yosiat/oceanic-next-vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
@@ -34,25 +34,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-dotenv'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'tpope/vim-eunuch'
-Plug 'Valloric/YouCompleteMe'
 call plug#end()
-
-"closetag setting
-let g:closetag_filenames = '*.js,*.jsx'
-
-"YCM config
-" Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
-" Don't show YCM's preview window [ I find it really annoying ]
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
-
-if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " jsx highlight plugin settings
 let g:jsx_ext_required = 0
@@ -173,11 +155,6 @@ set listchars=tab:▸\ ,eol:¬
 " set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
-
-" for vim 8
-if (has("termguicolors"))
-  set termguicolors
-endif
 
 colorscheme OceanicNext
 set t_ut=
