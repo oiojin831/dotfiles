@@ -1,4 +1,9 @@
 " Don't try to be vi compatible
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 set nocompatible
 
 set encoding=utf8
@@ -50,10 +55,6 @@ syntax on
 filetype plugin indent on
 
 " setting navigator
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
